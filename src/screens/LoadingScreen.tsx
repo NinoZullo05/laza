@@ -1,21 +1,38 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Image } from "react-native";
+import React, { useEffect } from "react";
+import { View, ActivityIndicator, StyleSheet, Image } from "react-native";
 
-export default function LoadingScreen() {
+const LoadingScreen = ({ navigation }: any) => {
+  useEffect(() => {
+    const timer = setTimeout(() => {}, 2000);
+    navigation.Navigate("Choose");
+    return () => clearTimeout(timer);
+  }, [navigation]);
+
   return (
     <View style={styles.container}>
-      <Image source={require("../../assets/Logo.png")} style={styles.image} />
-      <StatusBar style="auto" />
+      <View style={styles.imageContainer}>
+        <Image source={require("../../assets/Logo.png")} style={styles.image} />
+      </View>
+      <ActivityIndicator size="large" color="#000000" />
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#9775FA",
-    alignItems: "center",
     justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#9775FA",
   },
-  image: {},
+  imageContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginBottom: 10,
+  },
+  image: {
+    resizeMode: "contain",
+  },
 });
+
+export default LoadingScreen;
