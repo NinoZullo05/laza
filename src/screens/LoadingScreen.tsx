@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { View, ActivityIndicator, StyleSheet, Image } from "react-native";
 
-const LoadingScreen = ({ navigation }: any) => {
+const LoadingScreen: React.FC = ({ navigation }: any) => {
   useEffect(() => {
     const timer = setTimeout(() => {}, 2000);
-    navigation.Navigate("Choose");
+    navigation.navigate("Choose");
     return () => clearTimeout(timer);
   }, [navigation]);
 
