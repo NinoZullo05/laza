@@ -7,6 +7,10 @@ import StyleChoose from "./src/screens/StyleChoose";
 import GetStarted from "./src/screens/GetStarted";
 import WelcomeScreen from "./src/screens/WelcomeScreen";
 import SignUpScreen from "./src/screens/SignUpScreen";
+import ForgotPasswordScreen from "./src/screens/ForgotPasswordScreen";
+import VerificationCodeScreen from "./src/screens/VerificationCodeScreen";
+import NewPasswordScreen from "./src/screens/NewPasswordScreen";
+
 const Stack = createNativeStackNavigator();
 
 const App: React.FC = () => {
@@ -36,6 +40,22 @@ const App: React.FC = () => {
         <Stack.Screen
           name="SignUp"
           component={SignUpScreen}
+          options={{ headerShown: false }}
+        />
+
+        <Stack.Screen
+          name="ForgotPassword"
+          component={ForgotPasswordScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="VerificationCode"
+          component={VerificationCodeScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="NewPassword"
+          component={NewPasswordScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

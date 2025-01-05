@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({ navigation }: any) => {
   const [rememberMe, setRememberMe] = useState(false);
 
   return (
@@ -19,8 +19,13 @@ const WelcomeScreen = () => {
       <TextInput placeholder="Username" style={styles.input} />
       <TextInput placeholder="Password" secureTextEntry style={styles.input} />
 
-      <Text style={styles.passwordHint}>Forgot password?</Text>
-
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("ForgotPassword");
+        }}
+      >
+        <Text style={styles.passwordHint}>Forgot password?</Text>
+      </TouchableOpacity>
       <View style={styles.switchContainer}>
         <Text>Remember me</Text>
         <Switch
