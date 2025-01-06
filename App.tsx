@@ -10,7 +10,7 @@ import SignUpScreen from "./src/screens/SignUpScreen";
 import ForgotPasswordScreen from "./src/screens/ForgotPasswordScreen";
 import VerificationCodeScreen from "./src/screens/VerificationCodeScreen";
 import NewPasswordScreen from "./src/screens/NewPasswordScreen";
-
+import HomeScreen from "./src/screens/HomeScreen";
 const Stack = createNativeStackNavigator();
 
 const App: React.FC = () => {
@@ -56,6 +56,11 @@ const App: React.FC = () => {
         <Stack.Screen
           name="NewPassword"
           component={NewPasswordScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
