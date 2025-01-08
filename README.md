@@ -64,8 +64,7 @@ OR
 ├── assets          # 📸 Images and resources
 ├── components      # 🧩 Reusable UI components
 ├── screens         # 📱 Application screens
-├── navigation      # 🧭 Navigation setup
-├── redux           # 🔄 State management files
+├── navigation      # 🧭 Navigation setup 
 ├── styles          # 🎨 Theme and styles
 ├── App.tsx          # 🚪 Main entry point
 └── package.json    # ⚙️ Project configuration
