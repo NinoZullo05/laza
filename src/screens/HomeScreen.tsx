@@ -29,7 +29,6 @@ const productCardWidth = (width - 60) / 2;
 const brands: Brand[] = [
   { id: "1", name: "Adidas", totalProducts: 325 },
   { id: "2", name: "Nike", totalProducts: 286 },
-  { id: "3", name: "Puma", totalProducts: 184 },
   { id: "4", name: "Fila", totalProducts: 158 },
 ];
 
