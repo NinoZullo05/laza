@@ -1,6 +1,6 @@
 # Laza - Ecommerce Mobile App
 
-Laza is a modern and feature-rich Ecommerce Mobile App UI Kit developed using **React Native** and **Expo**. It is designed to provide a seamless shopping experience with beautiful and customizable screens. 📱🛒
+Laza is a modern and feature-rich Ecommerce Mobile App UI Kit developed using **React Native** and **Expo**. It is designed to provide a seamless shopping experience with beautiful and customizable screens. 🛒
 
 ---
 
@@ -64,8 +64,7 @@ OR
 ├── assets          # 📸 Images and resources
 ├── components      # 🧩 Reusable UI components
 ├── screens         # 📱 Application screens
-├── navigation      # 🧭 Navigation setup
-├── redux           # 🔄 State management files
+├── navigation      # 🧭 Navigation setup 
 ├── styles          # 🎨 Theme and styles
 ├── App.tsx          # 🚪 Main entry point
 └── package.json    # ⚙️ Project configuration
