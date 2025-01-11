@@ -1,231 +1,134 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
   Switch,
-  Animated,
+  Image,
+  TouchableOpacity,
 } from "react-native";
-import Icon from "react-native-vector-icons/Ionicons"; // Importa le icone dalla libreria
+import Icon from "react-native-vector-icons/MaterialIcons";
 
-interface DrawerProps {
-  isVisible: boolean;
-  onClose: () => void;
-  translateY: Animated.Value;
-}
-
-const CustomDrawer: React.FC<DrawerProps> = ({
-  isVisible,
-  onClose,
-  translateY,
-}) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+const CustomDrawer = () => {
+  const [isDarkMode, setDarkMode] = React.useState(false);
 
   const toggleDarkMode = () => {
-    setIsDarkMode((prev) => !prev);
-    // Qui implementeresti la logica per cambiare il tema dell'app
+    setDarkMode((prevState) => !prevState);
   };
 
-  if (!isVisible) return null;
-
-  const menuItems = [
-    { id: "account", icon: "person-circle", title: "Account Information" },
-    { id: "password", icon: "key", title: "Password" },
-    { id: "order", icon: "cart", title: "Order" },
-    { id: "cards", icon: "card", title: "My Cards" },
-    { id: "wishlist", icon: "heart", title: "Wishlist" },
-    { id: "settings", icon: "settings", title: "Settings" },
-  ];
-
   return (
-    <Animated.View
-      style={[
-        styles.container,
-        {
-          transform: [{ translateY }],
-        },
-      ]}
-    >
-      {/* Profile Section */}
-      <View style={styles.profileSection}>
-        <View style={styles.profileHeader}>
-          <Icon name="menu" style={styles.menuIcon} size={24} color="#1D1E20" />
-          <View style={styles.ordersCounter}>
-            <Text style={styles.ordersText}>3 Orders</Text>
-          </View>
-        </View>
-
-        <View style={styles.profileInfo}>
-          <Icon
-            name="person"
-            style={styles.profileImage}
-            size={50}
-            color="#1D1E20"
-          />
-          <View style={styles.nameContainer}>
-            <Text style={styles.profileName}>Mrh Raju</Text>
-            <View style={styles.verifiedBadge}>
-              <Text style={styles.verifiedText}>Verified Profile</Text>
-              <View style={styles.verifiedDot} />
-            </View>
-          </View>
-        </View>
-      </View>
-
-      {/* Dark Mode Toggle */}
-      <View style={styles.menuItem}>
-        <View style={styles.menuItemLeft}>
-          <Icon name="moon" style={styles.menuIcon} size={24} color="#1D1E20" />
-          <Text style={styles.menuText}>Dark Mode</Text>
-        </View>
-        <Switch
-          value={isDarkMode}
-          onValueChange={toggleDarkMode}
-          trackColor={{ false: "#E7E8EA", true: "#6A5AE0" }}
-          thumbColor={"#FFFFFF"}
+    <View style={styles.drawerContainer}>
+      {/* User Info Section */}
+      <View style={styles.profileContainer}>
+        <Image
+          source={{ uri: "https://via.placeholder.com/150" }}
+          style={styles.profileImage}
         />
+        <View>
+          <Text style={styles.name}>Mrh Raju</Text>
+          <Text style={styles.verified}>Verified Profile</Text>
+        </View>
+        <TouchableOpacity style={styles.ordersButton}>
+          <Text style={styles.ordersText}>3 Orders</Text>
+        </TouchableOpacity>
       </View>
 
       {/* Menu Items */}
-      {menuItems.map((item) => (
-        <TouchableOpacity
-          key={item.id}
-          style={styles.menuItem}
-          onPress={() => {
-            /* Implementa la navigazione */
-          }}
-        >
-          <View style={styles.menuItemLeft}>
-            <Icon
-              name={item.icon}
-              style={styles.menuIcon}
-              size={24}
-              color="#1D1E20"
-            />
-            <Text style={styles.menuText}>{item.title}</Text>
-          </View>
-        </TouchableOpacity>
-      ))}
+      <View style={styles.menuItems}>
+        <View style={styles.menuItem}>
+          <Icon name="brightness-6" size={24} color="#000" />
+          <Text style={styles.menuText}>Dark Mode</Text>
+          <Switch value={isDarkMode} onValueChange={toggleDarkMode} />
+        </View>
+        <MenuItem icon="person" text="Account Information" />
+        <MenuItem icon="lock" text="Password" />
+        <MenuItem icon="shopping-bag" text="Order" />
+        <MenuItem icon="credit-card" text="My Cards" />
+        <MenuItem icon="favorite" text="Wishlist" />
+        <MenuItem icon="settings" text="Settings" />
+      </View>
 
-      {/* Logout Button */}
-      <TouchableOpacity style={styles.logoutButton}>
-        <Icon
-          name="log-out"
-          style={[styles.menuIcon, styles.logoutIcon]}
-          size={24}
-          color="#FF5757"
-        />
+      {/* Logout Section */}
+      <TouchableOpacity style={styles.logout}>
+        <Icon name="logout" size={24} color="#ff3b30" />
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
-    </Animated.View>
+    </View>
   );
 };
 
+const MenuItem = ({ icon, text }: { icon: string; text: string }) => (
+  <View style={styles.menuItem}>
+    <Icon name={icon} size={24} color="#000" />
+    <Text style={styles.menuText}>{text}</Text>
+  </View>
+);
+
+export default CustomDrawer;
+
 const styles = StyleSheet.create({
-  container: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "#FFFFFF",
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
-    padding: 24,
-    paddingTop: 30,
-    marginTop: 60,
+  drawerContainer: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: 50,
+    backgroundColor: "#fff",
   },
-  profileSection: {
-    marginBottom: 32,
-  },
-  profileHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 24,
-  },
-  menuIcon: {
-    width: 24,
-    height: 24,
-    resizeMode: "contain",
-  },
-  ordersCounter: {
-    backgroundColor: "#F6F8FA",
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 6,
-  },
-  ordersText: {
-    color: "#1D1E20",
-    fontSize: 13,
-  },
-  profileInfo: {
+  profileContainer: {
     flexDirection: "row",
     alignItems: "center",
+    marginBottom: 20,
   },
   profileImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginRight: 12,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    marginRight: 10,
   },
-  nameContainer: {
+  name: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  verified: {
+    fontSize: 14,
+    color: "gray",
+  },
+  ordersButton: {
+    marginLeft: "auto",
+    backgroundColor: "#f1f1f1",
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderRadius: 15,
+  },
+  ordersText: {
+    fontSize: 12,
+    color: "#000",
+  },
+  menuItems: {
     flex: 1,
-  },
-  profileName: {
-    fontSize: 17,
-    fontWeight: "600",
-    color: "#1D1E20",
-    marginBottom: 4,
-  },
-  verifiedBadge: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  verifiedText: {
-    fontSize: 13,
-    color: "#8F959E",
-    marginRight: 4,
-  },
-  verifiedDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    backgroundColor: "#34C759",
+    marginTop: 10,
   },
   menuItem: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    paddingVertical: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "#F5F6FA",
-  },
-  menuItemLeft: {
-    flexDirection: "row",
-    alignItems: "center",
+    paddingVertical: 15,
+    borderBottomWidth: 0.5,
+    borderBottomColor: "#ccc",
   },
   menuText: {
-    fontSize: 15,
-    color: "#1D1E20",
-    marginLeft: 12,
+    fontSize: 16,
+    marginLeft: 15,
+    flex: 1,
   },
-  logoutButton: {
+  logout: {
     flexDirection: "row",
     alignItems: "center",
-    position: "absolute",
-    bottom: 40,
-    left: 24,
-  },
-  logoutIcon: {
-    color: "#FF5757",
+    paddingVertical: 15,
+    borderTopWidth: 0.5,
+    borderTopColor: "#ccc",
   },
   logoutText: {
-    fontSize: 15,
-    color: "#FF5757",
-    marginLeft: 12,
+    fontSize: 16,
+    color: "#ff3b30",
+    marginLeft: 15,
   },
 });
-
-export default CustomDrawer;
