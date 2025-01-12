@@ -293,11 +293,7 @@ const HomeScreen: React.FC<Props> = ({ navigation }) => {
         )}
 
         {/* Drawer */}
-        <CustomDrawer
-          isVisible={isDrawerVisible}
-          onClose={toggleDrawer}
-          translateY={translateY}
-        />
+        <CustomDrawer navigation={undefined} />
       </View>
     </SafeAreaView>
   );
