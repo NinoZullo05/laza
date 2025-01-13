@@ -18,7 +18,6 @@ Laza is a modern and feature-rich Ecommerce Mobile App UI Kit developed using **
 - 🚀 **Expo** - Toolchain for faster development, testing, and deployment.
 - 🧭 **React Navigation** - For handling navigation between screens.
 - 🔄 **Redux** - State management for scalability and consistency.
-- 🎨 **Styled Components** - For styling and theme support.
 - 🎨 **Figma** - Design tool used for creating and customizing UI components.
 
 ---
