@@ -73,7 +73,7 @@ OR
 
 ## 🤝 Contributing
 
-Contributions are welcome! 🚀 Please follow these steps:
+Contributions are welcome! 🚀 Please follow these steps :
 
 1. Fork the repository.
 2. Create a new branch:
